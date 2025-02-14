@@ -1,11 +1,17 @@
+import { Link } from "react-router-dom";
 import {Component} from "react";
+import {Button} from "react-bootstrap";
 
-export default class Unauthorized extends Component {
+class Unauthorized extends Component {
     render() {
         return (
             <div>
-                <h1>Login required to see this page</h1>
+                <h1>Nostr sign in required</h1>
+                <p>To use this page you need to login with your npub</p>
+                <Button>Login using browser extension</Button>
             </div>
         );
     }
 }
+
+export default Unauthorized;

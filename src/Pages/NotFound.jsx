@@ -1,15 +1,11 @@
 import {Component} from "react";
 
-class NotFound extends Component {
+export default class NotFound extends Component {
     render() {
         return (
             <div>
-                <h1>Not Found page</h1>
-                <p>The page you tried to access doesn't exist.</p>
-                <p>This is a generic route.</p>
+                <h1>The page you tried to access doesn't exist.</h1>
             </div>
         );
     }
 }
-
-export default NotFound;
