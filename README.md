@@ -35,16 +35,52 @@ The repository is organized to separate concerns and improve maintainability:
 4. **Docker Deployment**
    - Use the provided `docker-compose.yml` and `Dockerfile` for containerized deployment.
 
-## Code Quality and Testing
+## Testing & Quality Assurance
 
-- **Linting and Formatting:**  
-  The project uses ESLint and Prettier to maintain code quality. Configuration files (`.eslintrc.js` and `.prettierrc`) are provided to enforce consistency.
+### Running Tests
+```bash
+# Run all tests with coverage reporting
+npm test -- --coverage
 
-- **Type Checking and Documentation:**  
-  Consider using PropTypes or TypeScript, along with JSDoc annotations, to further improve code quality and maintainability.
+# Run specific test file
+npm test src/services/nostrService.test.js
 
-- **Testing:**  
-  Unit tests and integration tests can be implemented using Jest and React Testing Library to ensure robustness.
+# Watch mode during development
+npm test -- --watch
+```
+
+### Code Quality Tools
+```bash
+# Lint check
+npm run lint
+
+# Auto-fix lint issues
+npm run lint:fix
+
+# Format code
+npm run format
+
+# Check formatting without changes
+npm run format:check
+```
+
+### Pre-commit Hooks
+The project uses Husky to ensure:
+- Code passes ESLint checks
+- Tests for staged files pass
+- Consistent code formatting with Prettier
+- Commit messages follow conventional format
+
+### Test Case Strategy
+- Unit Tests: Service layer and utility functions
+- Integration Tests: Component interactions
+- E2E Tests: User workflows (TODO)
+- Coverage Threshold: 80%+ (enforced in CI)
+
+### Reporting
+- Coverage reports: `/coverage`
+- Lint reports: `eslint-report.html`
+- Test artifacts: `/test-results`
 
 ## Coding Guidelines
 
