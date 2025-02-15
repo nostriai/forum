@@ -23,7 +23,7 @@
   "dependencies": {
     "@nostr-dev-kit/ndk": "^2.11.0",
     "bootstrap": "^5.3.3",
-    "esbuild": "^0.25.0",
+    "esbuild": ">=0.25.0",
     "ndk": "^1.0.0",
     "nostr-login": "^1.7.6",
     "react": "^19.0.0",
