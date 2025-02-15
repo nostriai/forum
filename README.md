@@ -72,15 +72,74 @@ The project uses Husky to ensure:
 - Commit messages follow conventional format
 
 ### Test Case Strategy
-- Unit Tests: Service layer and utility functions
-- Integration Tests: Component interactions
-- E2E Tests: User workflows (TODO)
-- Coverage Threshold: 80%+ (enforced in CI)
+- **Unit Tests:** Service layer and utility functions
+  - Services (nostrService)
+  - Hooks (useNostr)
+  - Utility functions
+- **Component Tests:** Individual React components
+  - Layout components (Header, Footer, Layout)
+  - Page components (Home, Marketplace, NotFound)
+  - Auth components (RequireAuth)
+- **Integration Tests:** Component interactions and context
+  - Authentication flows
+  - Routing behaviors
+  - Context providers
+- **Coverage Requirements:**
+  - Global threshold: 80%+ (enforced in CI)
+  - Branches: 80%
+  - Functions: 80%
+  - Lines: 80%
+  - Statements: 80%
 
-### Reporting
+### Testing Tools & Setup
+- **Jest:** Test runner and assertion library
+- **React Testing Library:** Component testing
+- **Jest DOM:** DOM testing utilities
+- **Mock Service Worker:** API mocking (planned)
+- **Cypress:** E2E testing (planned)
+
+### Reporting & Monitoring
 - Coverage reports: `/coverage`
-- Lint reports: `eslint-report.html`
-- Test artifacts: `/test-results`
+  - HTML report: `/coverage/lcov-report/index.html`
+  - Cobertura: `/coverage/cobertura-coverage.xml`
+  - JSON: `/coverage/coverage-final.json`
+- Test results: Stored as GitHub Actions artifacts
+- Codecov integration: Automated coverage tracking
+
+## CI/CD Pipeline
+
+### Workflows
+
+1. **Test Workflow** (.github/workflows/test.yml)
+   - Runs on push and pull requests
+   - Executes test suite with coverage
+   - Performs linting and format checks
+   - Uploads coverage reports
+   - Enforces coverage thresholds
+
+2. **Build & Deploy** (.github/workflows/build-deploy.yml)
+   - Builds production assets
+   - Performs security audit
+   - Stores build artifacts
+   - Deployment configuration (customizable)
+
+3. **Version Management** (.github/workflows/version-bump.yml)
+   - Automated version bumping
+   - Conventional commit enforcement
+   - Release notes generation
+   - Git tag management
+
+### Environment Management
+- Development: Local development environment
+- Staging: Pre-production verification
+- Production: Live deployment
+- Environment-specific configurations via GitHub Secrets
+
+### Security
+- Dependency scanning
+- Code security analysis
+- npm audit checks
+- Protected branch policies
 
 ## Coding Guidelines
 
