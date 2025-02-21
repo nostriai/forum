@@ -1,27 +1,22 @@
-import { useState, useEffect } from 'react';
-import { getNostrData } from '../services/nostrService';
+import {useContext, useEffect, useState} from 'react';
+import NDK from "@nostr-dev-kit/ndk";
+import NostrService from "../Services/NostrService.js";
+import {AuthContext} from "../context/AuthManager.jsx";
 
-/**
- * Custom hook to fetch data from the Nostr protocol.
- *
- * @returns {object} An object containing data, loading and error states.
- */
 export default function useNostr() {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+    const [nostrService, setNostrService] = useState(null);
+    const {user} = useContext(AuthContext);
 
-  useEffect(() => {
-    getNostrData()
-      .then((result) => {
-        setData(result);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(err);
-        setLoading(false);
-      });
-  }, []);
+    useEffect(() => {
+        const ndk = new NDK({
+            explicitRelayUrls: ["wss://test.nostri.ai/"],
+        });
+        ndk.connect().then(() => {
+            const nostrService = new NostrService(ndk, user);
+            setNostrService(nostrService);
+        });
 
-  return { data, loading, error };
+    }, [user]);
+
+    return nostrService;
 }

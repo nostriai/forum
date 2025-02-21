@@ -5,7 +5,7 @@ import {
   publishEvent,
   subscribeToEvents,
   getNostrData,
-} from '../src/services/nostrService';
+} from '../src/Services/nostrService';
 
 jest.mock('ndk', () => {
   class MockNDK {

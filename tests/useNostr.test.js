@@ -1,12 +1,12 @@
 import React from 'react';
 import { act } from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
-import useNostr from '../src/hooks/useNostr';
-import { getNostrData } from '../src/services/nostrService';
+import useNostr from '../src/hooks/useNostr.js';
+import { getNostrData } from '../src/Services/nostrService';
 import '@testing-library/jest-dom';
 
 // Mock getNostrData for tests
-jest.mock('../src/services/nostrService', () => ({
+jest.mock('../src/Services/nostrService', () => ({
   getNostrData: jest.fn(() => Promise.resolve({ message: 'NDK integrated event data', timestamp: '2025-02-14T17:00:00.000Z' }))
 }));
 
