@@ -1,3 +1,4 @@
+import {BlossomUploader} from '@nostrify/nostrify/uploaders';
 export default class NostrService {
     constructor(ndk, user){
         this.ndk = ndk;
@@ -28,6 +29,21 @@ export default class NostrService {
             });
         });
         return formattedInfo;
+    }
+
+    async uploadFile(){
+        try {
+        const uploader = new BlossomUploader({
+            servers: ['https://test.nostri.ai'],
+            signer: window.nostr,
+            fetch: (...args) => globalThis.fetch(...args)
+        });
+        const [fileHandle] = await window.showOpenFilePicker();
+        const file = await fileHandle.getFile();
+        await uploader.upload(file);
+        } catch (error) {
+            console.error("Failed to get uploaded files:", error);
+        }
     }
 
     getExtensionFromMimeType(mimeType){

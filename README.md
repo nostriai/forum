@@ -12,7 +12,7 @@ The repository is organized to separate concerns and improve maintainability:
 
 - **/src**
   - **components/**: Contains reusable UI components (e.g., Header, Footer, Layout, RequireAuth).
-  - **pages/**: Contains page-level components (e.g., Home, Marketplace, NotFound, Unauthorized).
+  - **pages/**: Contains page-level components (e.g., Home, UserFiles, NotFound, Unauthorized).
   - **context/**: Holds React context providers (e.g., AuthManager).
   - **services/**: Contains business logic and service integrations (e.g., nostrService for interacting with the Nostr protocol).
   - **hooks/**: Contains custom React hooks (e.g., useNostr for encapsulating Nostr data fetching).
@@ -78,7 +78,7 @@ The project uses Husky to ensure:
   - Utility functions
 - **Component Tests:** Individual React components
   - Layout components (Header, Footer, Layout)
-  - Page components (Home, Marketplace, NotFound)
+  - Page components (Home, UserFiles, NotFound)
   - Auth components (RequireAuth)
 - **Integration Tests:** Component interactions and context
   - Authentication flows

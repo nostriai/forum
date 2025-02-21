@@ -27,6 +27,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@nostr-dev-kit/ndk": "^2.11.0",
+    "@nostrify/nostrify": "npm:@jsr/nostrify__nostrify@^0.38.1",
     "bootstrap": "^5.3.3",
     "esbuild": ">=0.25.0",
     "ndk": "^1.0.0",

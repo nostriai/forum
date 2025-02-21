@@ -1,10 +1,10 @@
-import useNostr from "../hooks/useNostr";
+import useNostr from "../../hooks/useNostr";
 import React, {useEffect, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faFile} from "@fortawesome/free-solid-svg-icons";
+import {faFile, faFileCirclePlus} from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 
-export function Marketplace() {
+export function UserFiles() {
     const nostr = useNostr();
     const [files, setFiles] = useState([]);
 
@@ -15,25 +15,25 @@ export function Marketplace() {
             setFiles(files);
         });
     }, [nostr]);
-
+    const uploadFile = async () => {
+        nostr.uploadFile().then(() => {
+            nostr.fetchUserFiles().then((files) => {
+                setFiles(files);
+            });
+        });
+    };
     return (
         <div>
             <div className="row">
                 <div className="col">
                     <div className="d-flex gap-2 align-items-center">
                         <h2>Your Uploaded Files</h2>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                             className="bi bi-file-plus" viewBox="0 0 16 16">
-                            <path
-                                d="M8.5 6a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V10a.5.5 0 0 0 1 0V8.5H10a.5.5 0 0 0 0-1H8.5z"/>
-                            <path
-                                d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1"/>
-                        </svg>
+                        <FontAwesomeIcon onClick={uploadFile} icon={faFileCirclePlus} title={"Add new file"} size={"xl"} />
                     </div>
                 </div>
             </div>
             <div className="row">
-                <ItemList>
+                <ItemListStyled>
                     {files.length > 0 ? (
                         files.map((file, index) => (
                             <li key={index}>
@@ -52,14 +52,16 @@ export function Marketplace() {
                     ) : (
                         <li>No files uploaded yet.</li>
                     )}
-                </ItemList>
+                </ItemListStyled>
             </div>
         </div>
     );
 }
 
 
-const ItemList = styled.ul`
+
+
+const ItemListStyled = styled.ul`
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 1rem;
