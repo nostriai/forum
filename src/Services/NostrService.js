@@ -1,21 +1,32 @@
 import {BlossomUploader} from '@nostrify/nostrify/uploaders';
+
 export default class NostrService {
     constructor(ndk, user){
         this.ndk = ndk;
         this.user = user;
     }
 
+     async getCurrentUser(){
+         return await window.nostr.getPublicKey();
+    }
+
     async subscribe(filters){
         return this.ndk.subscribe(filters);
     }
 
-    async fetchUserFiles(){
+    async fetchFiles(authors = []){
         const filters = {
-            pubkeys: [this.user],
             kinds: [24242],
         };
+        if(authors.length > 0){
+            filters.authors = authors;
+        }
+        console.log("Fetching files with filters:", filters);
         const formattedInfo = [];
-        const fileEvents = await this.ndk.fetchEvents(filters);
+        const fileEvents = await this.ndk.fetchEvents(filters,
+            {
+                closeOnEose: true,
+            });
         fileEvents.forEach((fileEvent) => {
             const name = fileEvent.tags[0][1];
             const extension = this.getExtensionFromMimeType(fileEvent.tags[1][1]);

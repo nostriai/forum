@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { Header } from '../../src/components/Header';
+import { Header } from '../../src/components/Global/Header.jsx';
 import { AuthContext } from '../../src/context/AuthManager';
 
 describe('Header Component', () => {

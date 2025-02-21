@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import {Badge, Button, NavbarText, Row, Col} from "react-bootstrap";
-import {AuthContext} from "../context/AuthManager";
+import {AuthContext} from "../../context/AuthManager.jsx";
 
 export class Header extends Component {
     static contextType = AuthContext;
@@ -15,6 +15,7 @@ export class Header extends Component {
                     <Container>
                         <Nav>
                             <Navbar.Brand href="/">Nostri.ai</Navbar.Brand>
+                            <Nav.Link href="/">Marketplace</Nav.Link>
                             <Nav.Link href="/marketplace/user-files/">My files</Nav.Link>
                         </Nav>
                         <Nav>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import RequireAuth from '../../src/components/RequireAuth';
+import RequireAuth from '../../src/components/Global/RequireAuth.jsx';
 import { AuthContext } from '../../src/context/AuthManager';
 import { Outlet } from 'react-router-dom';
 

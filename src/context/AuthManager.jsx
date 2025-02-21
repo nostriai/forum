@@ -10,6 +10,10 @@ export class AuthManager extends Component {
             user: null,
             authDone: false,
         };
+    }
+
+    componentDidMount() {
+
         nostrLoginInit({
             theme: 'default',
             onAuth: (user) => {
@@ -17,7 +21,6 @@ export class AuthManager extends Component {
                 this.setState({authDone: true});
             },
         });
-
     }
 
     launchLogin = () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { Layout } from '../../src/components/Layout';
+import { Layout } from '../../src/components/Global/Layout.jsx';
 import { AuthContext } from '../../src/context/AuthManager';
 import { Outlet } from 'react-router-dom';
 
@@ -10,11 +10,11 @@ jest.mock('react-router-dom', () => ({
 }));
 
 // Mock the Header and Footer components
-jest.mock('../../src/components/Header', () => ({
+jest.mock('../../src/components/Global/Header.jsx', () => ({
   Header: () => <div data-testid="header">Header Component</div>,
 }));
 
-jest.mock('../../src/components/Footer', () => ({
+jest.mock('../../src/components/Global/Footer.jsx', () => ({
   Footer: () => <div data-testid="footer">Footer Component</div>,
 }));
 

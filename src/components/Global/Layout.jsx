@@ -3,7 +3,7 @@ import { Footer } from "./Footer.jsx";
 import { Outlet } from "react-router-dom";
 import { Component } from "react";
 import Container from "react-bootstrap/Container";
-import { AuthContext } from "../context/AuthManager.jsx";
+import { AuthContext } from "../../context/AuthManager.jsx";
 
 export class Layout extends Component {
     static contextType = AuthContext;
