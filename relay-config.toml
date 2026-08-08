@@ -1,0 +1,35 @@
+[info]
+relay_url = "ws://0.0.0.0:8080"
+name = "FIOR Test Relay"
+description = "Local relay for FIOR protocol testing"
+
+[database]
+engine = "sqlite"
+data_directory = "/usr/src/app/db"
+
+[network]
+port = 8080
+address = "0.0.0.0"
+
+[limits]
+messages_per_sec = 0
+max_event_bytes = 1048576
+max_subs = 64
+max_filters = 20
+max_limit = 5000
+max_subid_length = 128
+blocked_kinds = []
+allow_scraping = true
+
+[authorization]
+pubkey_whitelist = []
+nip42_auth = false
+nip42_dms = false
+
+[verified_users]
+mode = "disabled"
+domain_whitelist = []
+domain_blacklist = []
+
+[logging]
+level = "info"

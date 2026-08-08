@@ -1,0 +1,24 @@
+# Multi-stage build for FIOR e2e test
+#
+# Build: docker build -f Dockerfile.e2e -t fior-e2e .
+# Run:   docker run --rm --network host -e FIOR_RELAY=ws://localhost:8080 fior-e2e
+
+# Stage 1: Build Go binary
+FROM golang:1.25-alpine AS go-builder
+WORKDIR /app
+COPY fiorgo/go.mod fiorgo/go.sum ./
+RUN GOPRIVATE=git.smesh.lol go mod download
+COPY fiorgo/ ./
+RUN CGO_ENABLED=0 go build -o e2etest ./cmd/e2etest/
+
+# Stage 2: Python runtime + testmodel + Go binary
+FROM python:3.12-slim
+RUN pip install --no-cache-dir numpy
+WORKDIR /app
+COPY testmodel/ ./testmodel/
+COPY --from=go-builder /app/e2etest /app/e2etest
+
+ENV FIOR_RELAY=ws://relay:8080
+ENV FIOR_TESTMODEL_DIR=/app
+
+CMD ["/app/e2etest"]
